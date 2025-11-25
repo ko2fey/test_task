@@ -10,6 +10,7 @@ class Status(models.Model):
                             null=True, verbose_name="Описание")
 
     class Meta:
+        ordering = ['id']
         verbose_name = 'Статус'
         verbose_name_plural = 'Статусы'
 
@@ -24,6 +25,7 @@ class Type(models.Model):
                             null=True, verbose_name="Описание")
 
     class Meta:
+        ordering = ['id']
         verbose_name = 'Тип операции'
         verbose_name_plural = 'Типы операций'
 
@@ -38,6 +40,7 @@ class Category(models.Model):
         Type, on_delete=models.CASCADE, verbose_name="Тип операции")
 
     class Meta:
+        ordering = ['id']
         verbose_name = 'Категория'
         verbose_name_plural = 'Категории'
         unique_together = ('name', 'type')
@@ -54,6 +57,7 @@ class SubCategory(models.Model):
         Category, on_delete=models.CASCADE, verbose_name="Категория")
 
     class Meta:
+        ordering = ['id']
         verbose_name = 'Подкатегория'
         verbose_name_plural = 'Подкатегории'
         unique_together = ('name', 'category')
