@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+
+{% block media %}
+    {{ filter.form.media.css }}
+{% endblock media %}
+
+{% block scripts %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    {{ filter.form.media.js }} 
+{% endblock scripts %}
+
+{% block header %}
+    <header class="navbar sticky-top bg-dark flex-md-nowrap p-0 shadow" data-bs-theme="dark" style="">
+        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6 text-white" href="#">Сервис управления движений денежных средств</a>
+    </header>
+{% endblock header %} 
+
+{% block title %}
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">{{header}}</h1>
+    </div>
+{% endblock title %}
+
+{% block content %}
+    <h2>{{title}}</h2>
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        {% endfor %}
+    {% endif %}
+    <div class="table-responsive small">
+        <table class="table table-striped table-sm">
+            <thead>
+                <tr class="text-center align-middle">
+                    <th>ID</th>
+                    <th>Название</th>
+                    <th>Описание</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for type in types %}
+                    <tr class="text-center align-middle">
+                        <td>{{type.id}}</td>
+                        <td>{{type.name}}</td>
+                        <td>{% if type.desc %}
+                                {{type.desc}}
+                            {% else %}
+                                -
+                            {% endif %}
+                        </td>
+                        <td class="text-end">
+                            <a href="{% url "cash_traffic:edit_type" type.id %}" class="btn btn-sm btn-success">Редактировать</a>
+                            <a href="{% url "cash_traffic:delete_type" type.id %}" class="btn btn-sm btn-danger">Удалить</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock content %}

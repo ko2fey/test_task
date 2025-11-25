@@ -1,0 +1,10 @@
+.navbar-brand {
+    padding: 1em 0em;
+}
+.row .select2-container--bootstrap-5 {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+.text-danger {
+    padding: 0em 0.5em 1em 0.5em !important;
+}

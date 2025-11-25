@@ -1,0 +1,68 @@
+{% extends "base.html" %} 
+{% load widget_tweaks %}
+
+{% block media %}
+    {{ form.media.css }}
+{% endblock media %}
+
+{% block scripts %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    {{ form.media.js }}
+{% endblock scripts %}
+
+{% block header %} 
+    <header class="navbar sticky-top bg-dark flex-md-nowrap p-0 shadow" data-bs-theme="dark" style="">
+        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6 text-white" href="#">Сервис управления движений денежных средств</a>
+    </header>
+{% endblock header %}
+
+{% block title %}
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">{{header}}</h1>
+    </div>
+{% endblock title %}
+
+{% block content %}
+    <h2>{{title}}</h2>
+    <form class="row col-md-4" method="POST">
+        {% csrf_token %}
+
+        {% for field in form %}
+        <div class="row mb-3">
+            <div class="row col-md-12">
+
+                {% if field.errors %}
+                    <div class="text-danger">
+                        {% for error in field.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                
+                {% if field.help_text %}
+                    <small class="form-text text-muted">{{ field.help_text }}</small>
+                {% endif %}
+
+            </div>
+            <div class="row col-md-6">{{field.label_tag}}</div>
+            <div class="row col-md-6">
+
+                {% if field.field.widget.input_type == "select" %} 
+                    {{ field|add_class:"form-select" }} 
+                {% else %} 
+                    {{ field|add_class:"form-control" }} 
+                {% endif %}
+
+            </div>
+        </div>
+        {% endfor %}
+
+        <div class="row">
+            <div class="row col-md-6">
+                <button type="submit" class="btn btn-primary">
+                    {% if object %}Изменить{% else %}Создать{% endif %}
+                </button>
+            </div>
+        </div>
+    </form> 
+{% endblock content %}
