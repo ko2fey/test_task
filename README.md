@@ -1,4 +1,4 @@
-# Название Вашего Проекта
+# Веб-сервис для управления движением денежных средств  
 
 [![Python](https://img.shields.io/badge/Python-3.12+-blue.svg)](https://python.org)
 [![Django](https://img.shields.io/badge/Django-5.2-brightgreen.svg)](https://djangoproject.com)
