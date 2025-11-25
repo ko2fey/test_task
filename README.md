@@ -4,8 +4,7 @@
 [![Django](https://img.shields.io/badge/Django-5.2-brightgreen.svg)](https://djangoproject.com)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-Тестовое задания, Django приложение по управлению движения денежных средств.  
-Для быстроты запуска, я добавил к проекту папку с виртуальной средой(.venv), где уже скачаны все зависимости.  
+Тестовое задания, Django приложение по управлению движения денежных средств.   
 Тестовые данные уже в БД  
 Администратор для админ панели:  
 логин: admin  
@@ -29,18 +28,28 @@ git clone https://github.com/ko2fey/test_task.git
 cd test_task
 ```
 
-### 3. (Оболочка GitBash) Активировать виртуальную среду
+### 3. Создаем виртуальную среду для наших зависимостей
+```bash
+python -m venv .venv
+```
+
+### 4. (Оболочка GitBash) Активировать виртуальную среду
 ```bash
 source .venv/Scripts/activate
 ```
 Если все сделали все правильно, то в консоле вы увидите что виртуальная среда активируется с надписью (.venv)  
 
-### 4. Перейти в папку проекта
+### 5. Устанавливаем все наши зависимости из файла requirements.txt
+```bash
+pip install -r requirements.txt
+```
+
+### 6. Перейти в папку проекта
 ```bash
 cd cash_traffic_project
 ```
 
-### 5. С помощью Python запустить локальный сервер который предоставляет django
+### 7. С помощью Python запустить локальный сервер который предоставляет django
 ```bash
 python manage.py runserver
 ```
@@ -50,7 +59,7 @@ Django version 5.2.8, using settings 'cash_traffic_project.settings'
 Starting development server at http://127.0.0.1:8000/  
 Quit the server with CTRL-BREAK.
 ```
-Пока консоль открыта и зарущен локальный сервер, все будет работать.  
-Приложение доступно по адресу http://127.0.0.1:8000/ на вашел локальном сервере django.
+Пока консоль открыта и запущен локальный сервер, все будет работать.  
+Приложение доступно по адресу http://127.0.0.1:8000/ на вашем локальном сервере django.
 
 
