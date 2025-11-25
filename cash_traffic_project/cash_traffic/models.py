@@ -2,6 +2,10 @@ from django.db import models
 from django.core.validators import MinValueValidator
 from django.utils import timezone
 
+# Создаем модели с зависимостями
+# Category связана с Type => При удалении записи из Type, все связанные категории удалятся
+# SubCategory связана с Category => При удалении записи из Category, все связанные подкатегории удалятся
+# Записи из Status, Type, Category, SubCategory удалять можно в только в том случае, если нет транзации, которая использует эту запись
 
 class Status(models.Model):
     name = models.CharField(max_length=30, unique=True,
@@ -105,16 +109,7 @@ class Transaction(models.Model):
         verbose_name = 'Транзакция'
         verbose_name_plural = 'Транзакции'
         ordering = ['-date_created']
-
-    # def save(self, *args, **kwargs):
-    #     if self.category != self.subcategory.category:
-    #         raise ValueError(
-    #             "Выбранная подкатегория не принадлежит данной категории.")
-    #     if self.type != self.category.type:
-    #         raise ValueError(
-    #             "Выбранная категория не принадлежит данному типу операций.")
-    #     super().save(*args, **kwargs)
-
+        
     def __str__(self) -> str:
         data_created = timezone.datetime.strftime(
             self.date_created, "%m-%d-%Y %H:%M:%S")

@@ -17,7 +17,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-
+# Подключем селект2 для ajax-запросов при выборе значений в селекте
+#  Подключаем наше приложение к кореню проекта
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("select2/", include("django_select2.urls")),

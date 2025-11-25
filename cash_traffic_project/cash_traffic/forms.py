@@ -3,7 +3,12 @@ from django_select2.forms import ModelSelect2Widget
 from .models import Transaction, Status, Category, SubCategory, Type
 from django.core.exceptions import ValidationError
 
+# Создаем форма для публичной части сайта
+
+
 class FormTransaction(ModelForm):
+    # Форма для создания транзакции
+    # В которой мы для зависимых селектов используем сторонний модуль django_select2
     status = ModelChoiceField(
         queryset=Status.objects.all(),
         widget=ModelSelect2Widget(
@@ -68,6 +73,8 @@ class FormTransaction(ModelForm):
     )
     
     def clean(self):
+        # После того как все поля валидны, мы проверяем их зависимости
+        # Хотя после подключения Select2 валидация идет автоматически но пусть пока будет 
         cleaned_data = super().clean()
         category = cleaned_data.get('category')
         subcategory = cleaned_data.get('subcategory') 

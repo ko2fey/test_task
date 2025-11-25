@@ -6,6 +6,8 @@ from django.http import HttpResponse
 from django.views.generic import ListView, UpdateView, DeleteView, CreateView
 from django.urls import reverse_lazy
 
+# Для примера сделал 1 представление (add_transaction) через функцию а не Класс 
+
 class ListTransaction(ListView):
     model = Transaction
     template_name = 'cash_traffic/index.html'

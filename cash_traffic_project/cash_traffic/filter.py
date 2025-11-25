@@ -3,7 +3,7 @@ from django import forms
 from django_select2.forms import ModelSelect2Widget
 from .models import Transaction, Type, Category
 
-
+# Создаем фильтр для списка транзакций который будет нужен нам в нашей вьюхе
 class DateInput(forms.DateInput):
     input_type = 'date'
     
